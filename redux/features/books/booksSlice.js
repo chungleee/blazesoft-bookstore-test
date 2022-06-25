@@ -1,47 +1,37 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { HYDRATE } from "next-redux-wrapper";
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-	books: [
-		{
-			name: "JK Rowling",
-			price: 12,
-			category: "fantasy",
-			description: "magic wizarding world",
-		},
-	],
-};
+const bookList = [
+	{
+		name: 'Harry Potter 1',
+		price: 12,
+		category: 'fantasy',
+		description: 'magic wizarding world',
+	},
+	{
+		name: 'Harry Potter 2',
+		price: 12,
+		category: 'fantasy',
+		description: 'magic wizarding world',
+	},
+	{
+		name: 'Harry Potter 3',
+		price: 12,
+		category: 'fantasy',
+		description: 'magic wizarding world',
+	},
+];
 
 export const booksSlice = createSlice({
-	name: "books",
-	initialState,
+	name: 'books',
+	initialState: {
+		bookList,
+	},
 	reducers: {
 		addBooks: (state, action) => {
 			state.books.push(action.payload);
-			return {
-				...state,
-			};
-		},
-		getBooks: (state, action) => {
-			return [
-				{
-					name: "JK Rowling",
-					price: 12,
-					category: "fantasy",
-					description: "magic wizarding world",
-				},
-			];
-		},
-	},
-	extraReducers: {
-		[HYDRATE]: (state, action) => {
-			return {
-				...state,
-				...action,
-			};
 		},
 	},
 });
 
-export const { addBooks, getBooks } = booksSlice.actions;
+export const { addBooks } = booksSlice.actions;
 export default booksSlice.reducer;
