@@ -1,37 +1,40 @@
-import React from "react";
-import { useDispatch, useSelector, useStore } from "react-redux";
-import { addBooks, getBooks } from "../redux/features/books/booksSlice";
-import { wrapper } from "../redux/store";
+import React from 'react';
+import { useDispatch, useSelector, useStore } from 'react-redux';
+import { addBooks } from '../redux/features/books/booksSlice';
 
 const HomePage = (props) => {
-	console.log("State on render", useStore().getState(), props);
-	const books = useSelector((state) => {
-		console.log("selector state", state);
-		return state.books;
+	const bookList = useSelector((state) => {
+		return state.books.bookList;
 	});
-	return <h1>Hello leon nextjs works!!!</h1>;
+	return (
+		<div>
+			<h1 className='font-bold underline'>Blazesoft bookstore test</h1>
+			<ul>
+				{bookList.map((book) => {
+					return (
+						<li>
+							<div>
+								<label>Name: </label>
+								<p>{book.name}</p>
+							</div>
+							<div>
+								<label>Price: </label>
+								<p>{book.price}</p>
+							</div>
+							<div>
+								<label>Category: </label>
+								<p>{book.category}</p>
+							</div>
+							<div>
+								<label>Description: </label>
+								<p>{book.description}</p>
+							</div>
+						</li>
+					);
+				})}
+			</ul>
+		</div>
+	);
 };
-
-export const getServerSideProps = wrapper.getServerSideProps((store) => {
-	return async () => {
-		const books = await store.dispatch(getBooks());
-		return {
-			props: {
-				books,
-			},
-		};
-	};
-});
-
-// export const getServerSideProps = wrapper.getServerSideProps((store) => {
-// 	return async () => {
-// 		const { books } = await store.getState();
-// 		return {
-// 			props: {
-// 				books: books.books,
-// 			},
-// 		};
-// 	};
-// });
 
 export default HomePage;
