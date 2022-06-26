@@ -1,7 +1,6 @@
 import React from "react";
-import Button from "./Button";
 
-const Popup = ({ children, isOpen, handlePopupToggle }) => {
+const Popup = ({ children, isOpen }) => {
 	return (
 		<div
 			className={`h-full w-full bg-slate-200 absolute flex justify-center items-center ${
