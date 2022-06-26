@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "./Button";
 
 const Popup = ({ children, isOpen, handlePopupToggle }) => {
@@ -8,17 +8,7 @@ const Popup = ({ children, isOpen, handlePopupToggle }) => {
 				isOpen ? "block" : "hidden"
 			}`}
 		>
-			<div className='border border-black h-3/5 w-4/5'>
-				{children}
-				<Button
-					className='bg-white p-2'
-					onClick={() => {
-						handlePopupToggle();
-					}}
-				>
-					Close popup
-				</Button>
-			</div>
+			<div className='border border-black h-3/5 w-4/5'>{children}</div>
 		</div>
 	);
 };
