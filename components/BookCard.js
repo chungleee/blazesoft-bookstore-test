@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import Button from "../components/Button";
+import { deleteBook } from "../redux/features/books/booksSlice";
 
 const BookCard = ({ book }) => {
+	const dispatch = useDispatch();
 	return (
 		<div className='border border-solid border-black mb-4'>
 			<div className='flex'>
@@ -21,7 +24,12 @@ const BookCard = ({ book }) => {
 				<p>{book.description}</p>
 			</div>
 
-			<Button className='bg-red-500 text-white p-2 text-center'>
+			<Button
+				onClick={() => {
+					dispatch(deleteBook(book));
+				}}
+				className='bg-red-500 text-white p-2 text-center'
+			>
 				Delete book
 			</Button>
 		</div>
