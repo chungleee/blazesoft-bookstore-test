@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector, useStore } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BookCard from "../components/BookCard";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import Popup from "../components/Popup";
 import TextArea from "../components/TextArea";
-import { addBooks } from "../redux/features/books/booksSlice";
+import { addBook } from "../redux/features/books/booksSlice";
 
 const HomePage = () => {
+	const dispatch = useDispatch();
 	const [popupToggle, setPopupToggle] = useState(false);
 	const [bookForm, setBookForm] = useState({
 		bookName: "",
@@ -22,13 +23,31 @@ const HomePage = () => {
 
 	const handleOnInputChange = (event) => {
 		setBookForm({
+			...bookForm,
 			[event.target.name]: event.target.value,
+		});
+	};
+
+	const handleFormReset = () => {
+		setBookForm({
+			bookName: "",
+			bookPrice: "",
+			bookCategory: "",
+			bookDescription: "",
 		});
 	};
 
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
-		console.log("form submitted!!!!!!!");
+		const newBook = {
+			name: bookForm.bookName,
+			price: bookForm.bookPrice,
+			category: bookForm.bookCategory,
+			description: bookForm.bookDescription,
+		};
+		dispatch(addBook(newBook));
+		handleFormReset();
+		handlePopupToggle();
 	};
 
 	const bookList = useSelector((state) => {
@@ -39,15 +58,13 @@ const HomePage = () => {
 		<div>
 			<Popup isOpen={popupToggle}>
 				<form onSubmit={handleFormSubmit}>
-					<div>
-						<label>Name: </label>
-						<input
-							type='text'
-							onChange={handleOnInputChange}
-							name='bookName'
-							value={bookForm.bookName}
-						/>
-					</div>
+					<InputField
+						type='text'
+						onChange={handleOnInputChange}
+						label='Name'
+						name='bookName'
+						value={bookForm.bookName}
+					/>
 					<InputField
 						type='number'
 						onChange={handleOnInputChange}
@@ -100,7 +117,7 @@ const HomePage = () => {
 			</div>
 			<ul>
 				{bookList.map((book) => {
-					return <BookCard book={book} />;
+					return <BookCard key={book.id} book={book} />;
 				})}
 			</ul>
 		</div>
