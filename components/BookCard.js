@@ -1,8 +1,9 @@
-import React from 'react';
+import React from "react";
+import Button from "../components/Button";
 
 const BookCard = ({ book }) => {
 	return (
-		<div>
+		<div className='border border-solid border-black mb-4'>
 			<div className='flex'>
 				<label>Name: </label>
 				<p>{book.name}</p>
@@ -19,6 +20,10 @@ const BookCard = ({ book }) => {
 				<label>Description: </label>
 				<p>{book.description}</p>
 			</div>
+
+			<Button className='bg-red-500 text-white p-2 text-center'>
+				Delete book
+			</Button>
 		</div>
 	);
 };
