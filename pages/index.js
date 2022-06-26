@@ -26,14 +26,19 @@ const HomePage = () => {
 		});
 	};
 
+	const handleFormSubmit = (event) => {
+		event.preventDefault();
+		console.log("form submitted!!!!!!!");
+	};
+
 	const bookList = useSelector((state) => {
 		return state.books.bookList;
 	});
 
 	return (
 		<div>
-			<Popup isOpen={popupToggle} handlePopupToggle={handlePopupToggle}>
-				<form>
+			<Popup isOpen={popupToggle}>
+				<form onSubmit={handleFormSubmit}>
 					<div>
 						<label>Name: </label>
 						<input
@@ -63,6 +68,20 @@ const HomePage = () => {
 						name='bookDescription'
 						value={bookForm.bookDescription}
 					/>
+					<div>
+						<Button className='p-2 bg-green-500' type='submit'>
+							Submit
+						</Button>
+						<Button
+							className='bg-white p-2'
+							type='button'
+							onClick={() => {
+								handlePopupToggle();
+							}}
+						>
+							Close popup
+						</Button>
+					</div>
 				</form>
 			</Popup>
 			<h1 className='font-bold underline text-center'>
