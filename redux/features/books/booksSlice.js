@@ -1,37 +1,50 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const bookList = [
 	{
-		name: 'Harry Potter 1',
+		id: 1,
+		name: "Harry Potter 1",
 		price: 12,
-		category: 'fantasy',
-		description: 'magic wizarding world',
+		category: "fantasy",
+		description: "magic wizarding world",
 	},
 	{
-		name: 'Harry Potter 2',
+		id: 2,
+		name: "Harry Potter 2",
 		price: 12,
-		category: 'fantasy',
-		description: 'magic wizarding world',
+		category: "fantasy",
+		description: "magic wizarding world",
 	},
 	{
-		name: 'Harry Potter 3',
+		id: 3,
+		name: "Harry Potter 3",
 		price: 12,
-		category: 'fantasy',
-		description: 'magic wizarding world',
+		category: "fantasy",
+		description: "magic wizarding world",
 	},
 ];
 
 export const booksSlice = createSlice({
-	name: 'books',
+	name: "books",
 	initialState: {
 		bookList,
 	},
 	reducers: {
-		addBooks: (state, action) => {
-			state.books.push(action.payload);
+		addBook: (state, action) => {
+			console.log("add book action: ", action);
+			state.bookList.push({ id: bookList.length + 1, ...action.payload });
+		},
+		deleteBook: (state, action) => {
+			const updatedBooklist = state.bookList.filter((book) => {
+				return book.id !== action.payload.id;
+			});
+			return {
+				...state,
+				bookList: updatedBooklist,
+			};
 		},
 	},
 });
 
-export const { addBooks } = booksSlice.actions;
+export const { addBook, deleteBook } = booksSlice.actions;
 export default booksSlice.reducer;
