@@ -17,7 +17,7 @@ const HomePage = () => {
 	});
 
 	return (
-		<div className='relative'>
+		<div className='relative mx-auto md:w-4/5'>
 			<Popup isOpen={formPopupToggle}>
 				<BookForm handleFormPopupToggle={handleFormPopupToggle} />
 			</Popup>

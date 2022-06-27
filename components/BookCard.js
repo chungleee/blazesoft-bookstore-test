@@ -13,7 +13,7 @@ const BookCard = ({ book }) => {
 		setIsOpen(!isOpen);
 	};
 	return (
-		<div>
+		<div className=''>
 			<Popup isOpen={isOpen}>
 				<BookCardPopup
 					book={book}
@@ -21,26 +21,26 @@ const BookCard = ({ book }) => {
 				/>
 			</Popup>
 			<div
-				className='border border-solid border-black mb-4 cursor-pointer'
+				className='border border-solid border-black mb-4 cursor-pointer flex flex-col'
 				onClick={() => {
 					handleBookCardPopupToggle();
 				}}
 			>
-				<div className='flex'>
-					<label>Name: </label>
-					<p>{book.name}</p>
+				<div className='flex justify-between'>
+					<label className='ml-4'>Name: </label>
+					<p className='mr-4 font-bold'>{book.name}</p>
 				</div>
-				<div className='flex'>
-					<label>Price: </label>
-					<p>{book.price}</p>
+				<div className='flex justify-between'>
+					<label className='ml-4'>Price: </label>
+					<p className='mr-4 font-bold'>{book.price}</p>
 				</div>
-				<div className='flex'>
-					<label>Category: </label>
-					<p>{book.category}</p>
+				<div className='flex justify-between'>
+					<label className='ml-4'>Category: </label>
+					<p className='mr-4 font-bold'>{book.category}</p>
 				</div>
-				<div className='flex'>
-					<label>Description: </label>
-					<p>{book.description}</p>
+				<div className='flex justify-between'>
+					<label className='ml-4'>Description: </label>
+					<p className='mr-4 font-bold'>{book.description}</p>
 				</div>
 
 				<Button
