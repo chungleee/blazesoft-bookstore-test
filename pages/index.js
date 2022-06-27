@@ -25,7 +25,7 @@ const HomePage = () => {
 				Blazesoft bookstore test
 			</h1>
 
-			<div>
+			<div className='text-center'>
 				<Button
 					onClick={() => {
 						handleFormPopupToggle();

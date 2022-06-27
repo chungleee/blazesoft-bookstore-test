@@ -46,13 +46,18 @@ const BookForm = ({ handleFormPopupToggle }) => {
 	};
 
 	return (
-		<form onSubmit={handleFormSubmit}>
+		<form
+			onSubmit={handleFormSubmit}
+			className='flex flex-col px-4 h-full justify-around'
+		>
+			<h1 className='text-center font-bold'>Create Book</h1>
 			<InputField
 				type='text'
 				onChange={handleOnInputChange}
 				label='Name'
 				name='bookName'
 				value={bookForm.bookName}
+				placeholder='Enter book name'
 			/>
 			<InputField
 				type='number'
@@ -60,6 +65,7 @@ const BookForm = ({ handleFormPopupToggle }) => {
 				label='Price'
 				name='bookPrice'
 				value={bookForm.bookPrice}
+				placeholder='Enter price'
 			/>
 			<InputField
 				type='text'
@@ -67,14 +73,16 @@ const BookForm = ({ handleFormPopupToggle }) => {
 				label='Category'
 				name='bookCategory'
 				value={bookForm.bookCategory}
+				placeholder='Enter category'
 			/>
 			<TextArea
 				label='Description'
 				onChange={handleOnInputChange}
 				name='bookDescription'
 				value={bookForm.bookDescription}
+				placeholder='Short book description'
 			/>
-			<div>
+			<div className='text-center'>
 				<Button className='p-2 bg-green-500' type='submit'>
 					Submit
 				</Button>

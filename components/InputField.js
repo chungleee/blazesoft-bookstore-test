@@ -1,10 +1,17 @@
 import React from "react";
 
-const InputField = ({ label, name, value, onChange, type }) => {
+const InputField = ({ label, name, value, onChange, type, placeholder }) => {
 	return (
-		<div className='flex'>
+		<div className='flex justify-between'>
 			<label>{label}: </label>
-			<input type={type} onChange={onChange} name={name} value={value} />
+			<input
+				style={{ minWidth: "250px" }}
+				type={type}
+				onChange={onChange}
+				name={name}
+				value={value}
+				placeholder={placeholder}
+			/>
 		</div>
 	);
 };

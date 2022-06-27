@@ -34,7 +34,11 @@ const BookCardPopup = ({ book, handleBookCardPopupToggle }) => {
 		handleBookCardPopupToggle();
 	};
 	return (
-		<form onSubmit={handleFormSubmit}>
+		<form
+			className='flex flex-col px-4 h-full justify-around'
+			onSubmit={handleFormSubmit}
+		>
+			<h1 className='text-center font-bold'>Edit Book</h1>
 			<InputField
 				type='text'
 				onChange={handleOnInputChange}
@@ -62,7 +66,7 @@ const BookCardPopup = ({ book, handleBookCardPopupToggle }) => {
 				name='bookDescription'
 				value={bookForm.bookDescription}
 			/>
-			<div>
+			<div className='text-center'>
 				<Button className='p-2 bg-green-500' type='submit'>
 					Submit
 				</Button>
