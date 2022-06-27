@@ -3,7 +3,7 @@ import React from "react";
 const Popup = ({ children, isOpen }) => {
 	return (
 		<div
-			className={`h-full w-full bg-slate-200 absolute flex justify-center items-center ${
+			className={`h-screen w-screen bg-slate-200 absolute flex justify-center items-center top-0 ${
 				isOpen ? "block" : "hidden"
 			}`}
 		>
