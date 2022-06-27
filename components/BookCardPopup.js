@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import InputField from "./InputField";
 import TextArea from "./TextArea";
 import Button from "./Button";
+import { updateBook } from "../redux/features/books/booksSlice";
 
 const BookCardPopup = ({ book, handleBookCardPopupToggle }) => {
 	const dispatch = useDispatch();
@@ -31,20 +32,15 @@ const BookCardPopup = ({ book, handleBookCardPopupToggle }) => {
 
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
-		// const newBook = {
-		// 	id: uuidv4(),
-		// 	name: bookForm.bookName,
-		// 	price: bookForm.bookPrice,
-		// 	category: bookForm.bookCategory,
-		// 	description: bookForm.bookDescription,
-		// };
 		const updatedBook = {
-			...bookForm,
+			id: book.id,
+			name: bookForm.bookName,
+			price: bookForm.bookPrice,
+			category: bookForm.bookCategory,
+			description: bookForm.bookDescription,
 		};
-
-		// dispatch(addBook(newBook));
+		console.log(updatedBook);
 		dispatch(updateBook(updatedBook));
-		handleFormReset();
 		handleBookCardPopupToggle();
 	};
 	return (
