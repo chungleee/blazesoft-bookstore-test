@@ -21,15 +21,6 @@ const BookCardPopup = ({ book, handleBookCardPopupToggle }) => {
 		});
 	};
 
-	const handleFormReset = () => {
-		setBookForm({
-			bookName: "",
-			bookPrice: "",
-			bookCategory: "",
-			bookDescription: "",
-		});
-	};
-
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
 		const updatedBook = {
@@ -39,7 +30,6 @@ const BookCardPopup = ({ book, handleBookCardPopupToggle }) => {
 			category: bookForm.bookCategory,
 			description: bookForm.bookDescription,
 		};
-		console.log(updatedBook);
 		dispatch(updateBook(updatedBook));
 		handleBookCardPopupToggle();
 	};
