@@ -1,22 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 const bookList = [
 	{
-		id: 1,
+		id: uuidv4(),
 		name: "Harry Potter 1",
 		price: 12,
 		category: "fantasy",
 		description: "magic wizarding world",
 	},
 	{
-		id: 2,
+		id: uuidv4(),
 		name: "Harry Potter 2",
 		price: 12,
 		category: "fantasy",
 		description: "magic wizarding world",
 	},
 	{
-		id: 3,
+		id: uuidv4(),
 		name: "Harry Potter 3",
 		price: 12,
 		category: "fantasy",
@@ -31,8 +32,9 @@ export const booksSlice = createSlice({
 	},
 	reducers: {
 		addBook: (state, action) => {
-			console.log("add book action: ", action);
-			state.bookList.push({ id: bookList.length + 1, ...action.payload });
+			state.bookList.push({
+				...action.payload,
+			});
 		},
 		deleteBook: (state, action) => {
 			const updatedBooklist = state.bookList.filter((book) => {
