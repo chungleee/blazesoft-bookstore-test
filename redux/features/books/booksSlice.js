@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
 const bookList = [
@@ -45,8 +45,25 @@ export const booksSlice = createSlice({
 				bookList: updatedBooklist,
 			};
 		},
+		updateBook: (state, action) => {
+			const updatedBook = state.bookList.find((book) => {
+				return book.id === action.payload.id;
+			});
+			updatedBook = { ...action.payload };
+			const updatedBooklist = state.bookList.map((book) => {
+				if (book.id === updatedBook.id) {
+					return (book = updatedBook);
+				}
+				return book;
+			});
+
+			return {
+				...state,
+				bookList: updatedBooklist,
+			};
+		},
 	},
 });
 
-export const { addBook, deleteBook } = booksSlice.actions;
+export const { addBook, deleteBook, updateBook } = booksSlice.actions;
 export default booksSlice.reducer;
